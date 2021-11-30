@@ -1,36 +1,77 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/png" href="assets/favicon.png">
+        <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+        <title>Fisheye - photographe </title>
+    </head>
+    
+    <body>
+        <header>
+            <!--doit-on mettre un lien  vers la page d'accueil ici?  -->
+            <img src="assets/images/logo.png" alt="Logo Fisheye de la page photographe" class="logo" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
-  </body>
+
+        <main id="main">
+            <div class="photograph-header">
+            <!-- displayModal() ne fonctionne pas -->
+            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            </div>
+        </main>
+
+        
+        <!-- modale de contact -->
+
+        <!-- 
+            TODO : modale de contact en js pour accessibilité
+                penser à masquer le reste de la page html aux tech d'assistance : aria-hidden="true"
+                pouvoir fermer la modal avec la touche echap
+                mettre le focus sur la modale lorsque la fenêtre est ouverte
+
+                regarder mon cours page 27, rendre les modales accessibles : exemple code JS en fin de page 
+
+
+                + penser à gerer le focus sur le bouton d'ouverture et de fermeture de la modale
+                regarder cours pas 29, fermeture de la modale : exemple code js
+
+        -->
+
+        <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modalContact">
+            <!-- TODO penser à modifier div en section + changer h2 en h1 seulement quand le bouton contactez-moi fonctionnera-->
+            <div class="modal">
+                <header>
+                    <h1>Contactez-moi</h1>
+                    <img src="assets/icons/close.svg" alt="Fermeture du formulaire de contact" onclick="closeModal()" />
+                </header>
+                <form>
+                    <div role="group" aria-labelledby="coordonnees">
+                        <label for="firstName">Prénom *</label>
+                        <!-- voir si j'ajoute les aria-invalid ici ou dans le JS-->
+                        <input type="text" name="firstName" id="firstName" aria-required="true" required/>
+
+                        <label for="lastName">Nom *</label>
+                        <input type="text" name="lastName" id="lastName" aria-required="true" required/>
+
+                        <label for="mail">Email *</label>
+                        <input type="mail" name="mail" id="mail" aria-required="true" required/>
+
+                        <label for="message">Votre message</label>
+                        <!-- vérifier la taille de la textarea-->
+                        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <button class="contact_button">Envoyer</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="/scripts/utils/contactForm.js"></script>
+
+    </body>
 </html>
+
