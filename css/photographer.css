@@ -1,11 +1,17 @@
+/********************************************/
+/********************************************/
+/*************** Modal Contact **************/
+/********************************************/
+/********************************************/
+
 #contact_modal {
     display: none;
-}
-
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(26,39,156,0.4);
 }
 
 .contact_button {
@@ -74,3 +80,172 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+/********************************************/
+/********************************************/
+/******** Header Photographer Section *******/
+/********************************************/
+/********************************************/
+
+.photograph-header {
+    background-color: #FAFAFA;
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+    width: 87%;
+    margin: auto;
+    border-radius: 1%;
+}
+
+.presentation-text {
+    margin : auto auto auto 3rem;
+}
+
+.presentation-text h1 {
+    font-size: 3rem;
+    color: #DB8876;
+    margin: 0;
+ }
+
+.presentation-text h2 {
+   color: #901C1C;
+   margin: 0;
+}
+
+.div_contact-button {
+    margin: auto;
+}
+
+.div-portrait {
+    margin : auto 3rem auto auto;
+}
+
+.photograph-header img {
+    height: 12rem;
+    width: 12rem;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 5px 5px 0px rgb(223, 223, 223);
+}
+
+/********************************************/
+/********************************************/
+/***************** Sort List ****************/
+/********************************************/
+/********************************************/
+
+.sort-list {
+    /* en attendant de faire mieux genre width 87%  */
+    margin-left: 100px;
+}
+
+.sort-list select {
+    background-color:#901C1C ;   
+    color: white;  
+    border:0;    
+    border-radius:3px;    
+    padding:10px;    
+    cursor:pointer; 
+
+}
+
+.sort-list option { 
+    /* voir si c'est bien une bordure qu'il faut pour les séparateurs blancs */
+    border-bottom: 1px solid white;
+}
+
+/********************************************/
+/********************************************/
+/*************** Media Section **************/
+/********************************************/
+/********************************************/
+
+.photographer_media_section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+}
+
+.photographer_media_section a {
+    width: 33%;
+}
+
+.photographer_media_section article {
+    display: flex;
+    flex-direction: column;
+    color: #901C1C;
+    height: 25rem ;
+    width: 100%;
+}
+
+.photographer_media_section article p{
+    margin: 3px 0 0 0;
+}
+
+
+.photographer_media_section article:hover img {
+    position: relative;
+    z-index: 1;
+}
+
+.photo-text {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+
+}
+
+.photographer_media_section h1 {
+    font-size: 1rem;
+    margin: 3px 0 0 0;
+}
+
+.div-price {
+    display: flex;
+    justify-content: space-between;
+    background-color: #D3573C; 
+    color: black;
+    height: 50px;
+    width: 30%;
+    bottom: 0;
+    right: 3rem;
+    border-radius: 0.3rem;
+    position: fixed;
+    z-index: 2;
+}
+
+.photographer_media_section i {
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+.photographer_media_section video, .photographer_media_section img {
+    height: 20rem;
+    width: 90%;
+    object-fit: cover;
+    border-radius: 2%;
+    margin: auto;
+}
+
+.div-price {
+    display: flex;
+    justify-content: space-between;
+    background-color: #D3573C; 
+    color: black;
+    height: 50px;
+    width: 30%;
+    padding: 0 1rem;
+    bottom: 0;
+    right: 3rem;
+    border-radius: 0.3rem;
+    position: fixed;
+    z-index: 2;
+}
+
+.likes {
+    color: inherit;
+}
+

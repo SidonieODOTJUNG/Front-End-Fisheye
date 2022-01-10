@@ -2,12 +2,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<!-- Faire le check w3c pour les attributs aria notamment -->
+
     <head>
         <meta charset="utf-8">
-
+        
         <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link rel="icon" type="image/png" href="assets/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/30cce85442.js" crossorigin="anonymous"></script>
+
         <title>Fisheye - photographe </title>
     </head>
     
@@ -18,11 +22,27 @@
         </header>
 
         <main id="main">
-            <div class="photograph-header">
-            <!-- displayModal() ne fonctionne pas -->
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            <div class="photograph-header"></div>
+            <div class="sort-list">
+                
+
+            <label for="preferenceList">Trier par</label>
+                <!-- TODO : faire la liste directement dans le HTML et ajouter une fonction pour trier dans data.js -->
+                <select id="preferenceList">
+                    <option value="popularite">Popularité</option>
+                    <option value="date">Date</option>
+                    <option value="titre">Titre</option>
+                  </select>
             </div>
+            <section class="photographer_media_section"></section>
+
+            <div class="div-price">
+                <p><span id="media-likes"></span> <i class="fa fa-heart"></i></p>
+                <p><span id="photographer-price"></span> / jour</p>
+            </div>
+
         </main>
+
 
         
         <!-- modale de contact -->
@@ -42,7 +62,6 @@
         -->
 
         <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modalContact">
-            <!-- TODO penser à modifier div en section + changer h2 en h1 seulement quand le bouton contactez-moi fonctionnera-->
             <div class="modal">
                 <header>
                     <h1>Contactez-moi</h1>
@@ -70,7 +89,14 @@
             </div>
         </div>
 
-        <script src="/scripts/utils/contactForm.js"></script>
+        
+        <script src="scripts/utils/data.js"></script>
+        <script src="scripts/utils/likes.js"></script>
+        <script src="scripts/utils/contactForm.js"></script>
+        <script src="scripts/factories/media.js"></script>
+        <script src="scripts/factories/photographer.js"></script>
+        <script src="scripts/pages/photographer.js"></script>
+        
 
     </body>
 </html>

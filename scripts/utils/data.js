@@ -1,10 +1,6 @@
-
-
 const getDatas = async function () {
     try {
         let response = await fetch("data/photographers.json")
-        // TODO voir pourquoi cors multirequete ne fonctionne pas
-        // c'est parce que c'est un fichier local, il faudrai créer son propre serveur avec node.js (voir avec Armel)
         if(response.ok) {
             let data = await response.json()
             return data;
@@ -21,3 +17,17 @@ const getPhotographers = async function () {
     return data.photographers
 }
 
+const getPhotographersById = async function (id) {
+    let data = await getPhotographers()
+    let photographer = data.find(function(el) {
+        return el.id == id
+    })
+    return photographer
+}
+
+const getMedias = async function (id) {
+    let data = await getDatas()
+    return data.medias.filter(function (el) {
+        return el.photographerId == id
+    })
+}
