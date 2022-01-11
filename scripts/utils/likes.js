@@ -1,23 +1,28 @@
 const listenForLikes = () => {
-    const article = document.querySelector("article")
-    const likes = document.querySelector(".likes")
-    const likeSpan = document.querySelector(".likes-number")
-
-
-
-    // mon querySelectorAll me renvoie un tableau, comment obtenir le bon élément (pour article et likeSpan)
-    // tandis que mon queryselectror me revoi seuleemnt au premier élément rencontré
-    
-    // le problème c'est que mon listener ne fonctionnera qu'avec les queryselector... 
-
-    likes.addEventListener("click", (event) => {
-        event.currentTarget.classList.toggle("like-yes")
-        if (event.currentTarget.classList.contains("like-yes")) {
-            article.setAttribute("id", "ancre")
-            likeSpan.setAttribute("id", "likesNumber")
-            const spanLikeVal = document.getElementById("likesNumber").innerHTML
-            const numberLikes = parseInt(spanLikeVal) +1
-            document.getElementById("likesNumber").innerHTML = numberLikes
-        }
+    const likes = document.querySelectorAll(".likes")
+    const totalLikes = document.querySelector("#media-likes")
+ 
+    likes.forEach((like) => {
+        like.addEventListener("click", (event) => {
+            // preventDefault pour l'ancre de mon lien
+            event.preventDefault()
+            const eventTarget = event.currentTarget
+            eventTarget.classList.toggle("like-yes")
+            if (eventTarget.classList.contains("like-yes")) {
+                const spanLikeVal = eventTarget.previousSibling.innerText
+                const numberLikes = Number(spanLikeVal) +1
+                eventTarget.previousSibling.innerText = numberLikes
+                const numberTotalLikes = Number(totalLikes.innerText) +1
+                totalLikes.innerText = numberTotalLikes
+            } else {
+                const spanLikeVal = eventTarget.previousSibling.innerText
+                const numberLikes = Number(spanLikeVal) -1
+                eventTarget.previousSibling.innerText = numberLikes
+                const numberTotalLikes = Number(totalLikes.innerText) -1
+                totalLikes.innerText = numberTotalLikes
+            }
+        })
     })
+
+
 }

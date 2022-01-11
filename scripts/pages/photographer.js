@@ -1,27 +1,24 @@
 const getParam = new URLSearchParams(location.search)
 const idPhotographer = getParam.get("id")
-
+let photographerFirstName = ""
+let medias = []
 
 // pour le tri
-// function displayMedia(medias) {
-//     // ne doit prendre en param que madia + photographer name au max
+function displayMedia(mediasPhotographer) {
+    const photographersMediaSection = document.querySelector(".photographer_media_section")
+    photographersMediaSection.innerHTML = ""
 
-// aidera à réafficher tout ce que j'ai trier
-
-//     const photographersMediaSection = document.querySelector(".photographer_media_section")
-
-//  vider l'élément photographersMediaSection (avec innertext)
-//     medias.forEach((media) => {
-//         const mediaModel = mediasFactory(media, totalPhotographerLikes, photographerName, photographerDailyPrice)
-//         const pictureCardDOM = mediaModel.getPictureCardDOM()
-//         photographersMediaSection.appendChild(pictureCardDOM)
-//     })
-// }
+    mediasPhotographer.forEach((media) => {
+        const mediaModel = mediasFactory(media, photographerFirstName)
+        const pictureCardDOM = mediaModel.getPictureCardDOM()
+        photographersMediaSection.appendChild(pictureCardDOM)
+    })
+}
 
 
 // vider l'élément permet de ne plus afficher les médias non trié en dessous 
 
-async function displayData(medias, totalPhotographerLikes, photographerName, photographerDailyPrice, photographerData) {
+async function displayData(mediasPhotographer, totalPhotographerLikes, photographerDailyPrice, photographerData) {
     
     // affichage données dans la présentation photographe
     const photographerHeaderDiv = document.querySelector(".photograph-header")
@@ -31,12 +28,7 @@ async function displayData(medias, totalPhotographerLikes, photographerName, pho
 
 
     // affichage données dans les articles
-    const photographersMediaSection = document.querySelector(".photographer_media_section")
-    medias.forEach((media) => {
-        const mediaModel = mediasFactory(media, photographerName)
-        const pictureCardDOM = mediaModel.getPictureCardDOM()
-        photographersMediaSection.appendChild(pictureCardDOM)
-    })
+    // displayMedia(mediasPhotographer)
 
     // affichage données div-price
     const mediaLikes = document.getElementById("media-likes")
@@ -49,14 +41,78 @@ async function displayData(medias, totalPhotographerLikes, photographerName, pho
     listenForLikes()
 }
 
+function sortByPop() {
+    medias.sort((a, b) => (b.likes-a.likes))
+    displayMedia(medias)
+}
+
+function sortByDate() {
+    medias.sort((a,b) => {
+        if(a.date > b.date) {
+            return -1
+        }
+        if(b.date > a.date) {
+            return 1
+        }
+        return 0
+    })
+    displayMedia(medias)
+}
+
+function sortByTitle() {
+
+    if(medias.video) {
+        const titles = document.querySelectorAll(".title")
+        titles.forEach((titleText) => {
+            const title = titleText.innerText
+            // console.log(title)
+            return title
+            
+        })
+    }
+    
+
+    medias.sort((a,b) => {
+        if(a.title > b.title) {
+            return 1
+        }
+        if(b.title > a.title) {
+            return -1
+        }
+        return 0
+    })
+    displayMedia(medias)
+}
+
+function sortList(event) {
+   const value = event.target.value
+   switch (value) {
+       case "popularite":
+           sortByPop()
+           break;
+        case "date":
+            sortByDate()
+            break;
+        case "titre":
+            sortByTitle()
+            break;
+   
+       default:
+           break;
+   }
+}
+
 async function init() {
     // Récupère les datas des photographes
     const photographer = await getPhotographersById(idPhotographer)
-    const photographerFirstName = photographer.name.split(" ")[0]
+    photographerFirstName = photographer.name.split(" ")[0]
     const photographDailyPrice = photographer.price
-    const medias = await getMedias(idPhotographer)
+    medias = await getMedias(idPhotographer)
     const totalLikes = medias.reduce((previousValue, currentValue) => previousValue + currentValue.likes, 0)
-    displayData(medias, totalLikes, photographerFirstName, photographDailyPrice, photographer)
+    displayData(medias, totalLikes, photographDailyPrice, photographer)
+    sortByPop()
+    const select = document.getElementById("preferenceList")
+    select.addEventListener("change", sortList)
 }
 
 init()

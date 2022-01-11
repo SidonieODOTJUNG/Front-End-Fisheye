@@ -31,6 +31,7 @@ function imageFactory (data, photographerName) {
         div.setAttribute("class", "photo-text")
 
         const h1 = document.createElement( 'h1' )
+        h1.setAttribute("class", "title")
         h1.textContent = title
 
         const likeLine = document.createElement('p')
@@ -38,7 +39,7 @@ function imageFactory (data, photographerName) {
         likeSpan.setAttribute("class", "likes-number")
         likeSpan.textContent = likes
         const ancre = document.createElement('a')
-        ancre.setAttribute("href", "#ancre")
+        ancre.setAttribute("href", "#")
         ancre.setAttribute("class", "likes")
         const iconHeart = document.createElement('i')
         iconHeart.setAttribute("class", "fa fa-heart" )
@@ -75,7 +76,8 @@ function videoFactory (data, photographerName) {
         const videoInput = document.createElement( 'video' )
         videoInput.setAttribute("src", picture)
         videoInput.setAttribute("controls", true)
-        const alt = `Vidéo nommée ${title}`
+        const alt = `Vidéo nommée ${video.substring(0, video.length-4).replaceAll("_", " ")}`
+
         videoInput.setAttribute("alt", alt)
 
         const div = document.createElement('div')
@@ -83,14 +85,20 @@ function videoFactory (data, photographerName) {
 
 
         const h1 = document.createElement( 'h1' )
-        h1.textContent = title
+        h1.setAttribute("class", "title")
+        h1.textContent = video.substring(0, video.length-4).replaceAll("_", " ")
 
         const likeLine = document.createElement('p')
-        likeLine.setAttribute("class", "likes-number")
-        likeLine.textContent = likes
+        const likeSpan = document.createElement("span")
+        likeSpan.setAttribute("class", "likes-number")
+        likeSpan.textContent = likes
+        const ancre = document.createElement('a')
+        ancre.setAttribute("href", "#")
+        ancre.setAttribute("class", "likes")
         const iconHeart = document.createElement('i')
         iconHeart.setAttribute("class", "fa fa-heart" )
-        likeLine.appendChild(iconHeart)
+        ancre.appendChild(iconHeart)
+        likeLine.append(likeSpan, ancre)
 
         div.appendChild(h1)
         div.appendChild(likeLine)
