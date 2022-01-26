@@ -15,7 +15,12 @@ function imageFactory (data, photographerName) {
     function getPictureCardDOM() {
 
         const a = document.createElement('a')
-        a.setAttribute("href", "../lightbox.html")
+        a.setAttribute("href", picture)
+        a.setAttribute("aria-label", `Présentation du média : ${title}`)
+        a.addEventListener("click", (event) => {
+            event.preventDefault()
+            displayLightbox(data, photographerName)
+        })
         
         const article = document.createElement( 'article' )
         article.setAttribute("class", "article")
@@ -23,6 +28,7 @@ function imageFactory (data, photographerName) {
 
         const img = document.createElement( 'img' )
         img.setAttribute("src", picture)
+        img.classList.add("mySlides")
         const alt = `Photo nommée ${title}`
         img.setAttribute("alt", alt)
 
@@ -62,21 +68,27 @@ function imageFactory (data, photographerName) {
 }
 
 function videoFactory (data, photographerName) {
-    const { title, video, likes} = data
+    const { title, video, likes, id} = data
+    const videoTitle = video.substring(0, video.length-4).replaceAll("_", " ")
        
     const picture = `assets/photographersbook/${photographerName}/${video}`
 
     function getPictureCardDOM() {
 
         const a = document.createElement('a')
-        a.setAttribute("href", "../lightbox.html")
+        a.setAttribute("href", picture)
+        a.setAttribute("aria-label", `Présentation du média : ${videoTitle}`)
+        a.addEventListener("click", (event) => {
+            event.preventDefault()
+            displayLightbox(data, photographerName)
+        })
         const article = document.createElement( 'article' )
 
 
         const videoInput = document.createElement( 'video' )
         videoInput.setAttribute("src", picture)
         videoInput.setAttribute("controls", true)
-        const alt = `Vidéo nommée ${video.substring(0, video.length-4).replaceAll("_", " ")}`
+        const alt = `Vidéo nommée ${videoTitle}`
 
         videoInput.setAttribute("alt", alt)
 
@@ -86,7 +98,8 @@ function videoFactory (data, photographerName) {
 
         const h1 = document.createElement( 'h1' )
         h1.setAttribute("class", "title")
-        h1.textContent = video.substring(0, video.length-4).replaceAll("_", " ")
+        h1.setAttribute("id", id)
+        h1.textContent = videoTitle
 
         const likeLine = document.createElement('p')
         const likeSpan = document.createElement("span")

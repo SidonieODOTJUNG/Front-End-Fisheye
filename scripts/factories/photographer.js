@@ -8,10 +8,12 @@ function photographerFactory(data) {
 
         const a = document.createElement('a')
         a.setAttribute("href", `../photographer.html?id=${id}`)
+        a.setAttribute("aria-label", `Article de présentation de l'artiste : ${name}`)
         const article = document.createElement( 'article' )
 
         const img = document.createElement( 'img' )
         img.setAttribute("src", picture)
+        
         const alt = `Photo de ${name}`
         img.setAttribute("alt", alt)
 

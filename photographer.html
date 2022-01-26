@@ -22,10 +22,8 @@
         </header>
 
         <main id="main">
-            <div class="photograph-header"></div>
-            <div class="sort-list">
-                
-
+            <div class="photograph-header" role="Présentation du photographe"></div>
+            <div class="sort-list" role="Liste de tri">
             <label for="preferenceList">Trier par</label>
                 <!-- TODO : faire la liste directement dans le HTML et ajouter une fonction pour trier dans data.js -->
                 <select id="preferenceList">
@@ -34,9 +32,9 @@
                     <option value="titre">Titre</option>
                   </select>
             </div>
-            <section class="photographer_media_section"></section>
+            <section class="photographer_media_section" role="Présentation des médias de l'artiste"></section>
 
-            <div class="div-price">
+            <div class="div-price" role="Coût du photographe par jour">
                 <p><span id="media-likes"></span> <i class="fa fa-heart"></i></p>
                 <p><span id="photographer-price"></span> / jour</p>
             </div>
@@ -61,7 +59,7 @@
 
         -->
 
-        <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modalContact">
+        <div id="contact_modal" role="Fenetre de contact" aria-hidden="true" aria-describedby="modalContact">
             <div class="modal">
                 <header>
                     <h1>Contactez-moi</h1>
@@ -89,14 +87,31 @@
             </div>
         </div>
 
+        <a href="" aria-multiline=""></a>
+
+
+        <!-- lightbox -->
+
+        <div class="lightbox" role="Carroussel">
+            <button class="lightbox_close" onclick="closeLightbox()"></button>
+            <button class="lightbox_next" onclick="ChangeSlide(1)"></button>
+            <button class="lightbox_prev" onclick="ChangeSlide(-1)"></button>
+            <div class="lightbox_container">
+                <img id="media_img" src="" alt="">
+                <video id="media_video" src="" alt=""></video>
+            </div>
+        </div>
+
+       
+
         
         <script src="scripts/utils/data.js"></script>
         <script src="scripts/utils/likes.js"></script>
         <script src="scripts/utils/contactForm.js"></script>
+        <script src="scripts/utils/lightBox.js"></script>
         <script src="scripts/factories/media.js"></script>
         <script src="scripts/factories/photographer.js"></script>
         <script src="scripts/pages/photographer.js"></script>
-        
 
     </body>
 </html>

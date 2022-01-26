@@ -13,6 +13,9 @@ function displayMedia(mediasPhotographer) {
         const pictureCardDOM = mediaModel.getPictureCardDOM()
         photographersMediaSection.appendChild(pictureCardDOM)
     })
+
+    // changement d'affichage du nombre de like en fonction du clic
+    listenForLikes()
 }
 
 
@@ -26,19 +29,11 @@ async function displayData(mediasPhotographer, totalPhotographerLikes, photograp
     const photographerCardDOM = headerModel.getPhotographerCardDOM()
     photographerHeaderDiv.append(photographerCardDOM.divPresentationText, photographerCardDOM.divContactButton, photographerCardDOM.divPortrait)
 
-
-    // affichage données dans les articles
-    // displayMedia(mediasPhotographer)
-
     // affichage données div-price
     const mediaLikes = document.getElementById("media-likes")
     mediaLikes.textContent = totalPhotographerLikes
     const photographerPrice = document.getElementById("photographer-price")
     photographerPrice.textContent = photographerDailyPrice
-
-
-    // changement d'affichage du nombre de like en fonction du clic
-    listenForLikes()
 }
 
 function sortByPop() {
@@ -59,24 +54,25 @@ function sortByDate() {
     displayMedia(medias)
 }
 
+function getMediaTitle(media) {
+    if (media.image) {
+        return media.title
+    } else {
+        const title = document.getElementById(media.id).textContent
+        return title
+    }
+}
+
 function sortByTitle() {
 
-    if(medias.video) {
-        const titles = document.querySelectorAll(".title")
-        titles.forEach((titleText) => {
-            const title = titleText.innerText
-            // console.log(title)
-            return title
-            
-        })
-    }
-    
-
     medias.sort((a,b) => {
-        if(a.title > b.title) {
+        const titleA = getMediaTitle(a)
+        const titleB = getMediaTitle(b)
+
+        if(titleA > titleB) {
             return 1
         }
-        if(b.title > a.title) {
+        if(titleB > titleA) {
             return -1
         }
         return 0
