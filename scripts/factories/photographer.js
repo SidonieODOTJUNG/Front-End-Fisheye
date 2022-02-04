@@ -1,101 +1,96 @@
-function photographerFactory(data) {
-    const { name, id, city, country, tagline, price, portrait } = data
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+function photographerFactory (data) {
+  const { name, id, city, country, tagline, price, portrait } = data
 
+  const picture = `assets/photographers/${portrait}`
 
-    const picture = `assets/photographers/${portrait}`
+  function getUserCardDOM () {
+    const a = document.createElement('a')
+    a.setAttribute('href', `../photographer.html?id=${id}`)
+    a.setAttribute('aria-label', `Article de présentation de l'artiste : ${name}`)
+    const article = document.createElement('article')
 
-    function getUserCardDOM() {
+    const img = document.createElement('img')
+    img.setAttribute('src', picture)
 
-        const a = document.createElement('a')
-        a.setAttribute("href", `../photographer.html?id=${id}`)
-        a.setAttribute("aria-label", `Article de présentation de l'artiste : ${name}`)
-        const article = document.createElement( 'article' )
+    const alt = `Photo de ${name}`
+    img.setAttribute('alt', alt)
 
-        const img = document.createElement( 'img' )
-        img.setAttribute("src", picture)
-        
-        const alt = `Photo de ${name}`
-        img.setAttribute("alt", alt)
+    const div = document.createElement('div')
 
-        const div = document.createElement('div')
+    const h1 = document.createElement('h1')
+    h1.textContent = name
 
-        const h1 = document.createElement( 'h1' )
-        h1.textContent = name
+    const h2 = document.createElement('h2')
+    h2.textContent = `${city}, ${country}`
 
-        const h2 = document.createElement('h2')
-        h2.textContent = `${city}, ${country}`
+    const pTag = document.createElement('p')
+    pTag.textContent = tagline
 
-        const pTag = document.createElement('p')
-        pTag.textContent = tagline
+    const spanPrice = document.createElement('span')
+    spanPrice.textContent = `${price}€/jour`
+    const pPrice = document.createElement('p')
+    pPrice.appendChild(spanPrice)
 
-        const spanPrice = document.createElement('span')
-        spanPrice.textContent = `${price}€/jour`
-        const pPrice = document.createElement('p')
-        pPrice.appendChild(spanPrice)
+    div.appendChild(h1)
+    div.appendChild(h2)
+    div.appendChild(pTag)
+    div.appendChild(pPrice)
 
-        div.appendChild(h1)
-        div.appendChild(h2)
-        div.appendChild(pTag)
-        div.appendChild(pPrice)
+    article.appendChild(img)
+    article.appendChild(div)
 
+    a.appendChild(article)
 
-        article.appendChild(img)
-        article.appendChild(div)
-
-        a.appendChild(article)
-
-
-        return (a)
-    }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
+    return (a)
+  }
+  return { name, picture, city, country, tagline, price, getUserCardDOM }
 }
 
-function photographerHeaderFactory(data) {
-    const { name, city, country, tagline, portrait } = data
+function photographerHeaderFactory (data) {
+  const { name, city, country, tagline, portrait } = data
 
+  const picture = `assets/photographers/${portrait}`
 
-    const picture = `assets/photographers/${portrait}`
+  function getPhotographerCardDOM () {
+    const divPresentationText = document.createElement('div')
+    divPresentationText.setAttribute('class', 'presentation-text')
+    const h1 = document.createElement('h1')
+    h1.textContent = name
+    const h2 = document.createElement('h2')
+    h2.textContent = `${city}, ${country}`
+    const pTag = document.createElement('p')
+    pTag.textContent = tagline
 
-    function getPhotographerCardDOM() {
+    divPresentationText.appendChild(h1)
+    divPresentationText.appendChild(h2)
+    divPresentationText.appendChild(pTag)
 
+    const divContactButton = document.createElement('div')
+    divContactButton.setAttribute('class', 'div_contact-button')
+    const contactButton = document.createElement('button')
+    contactButton.setAttribute('class', 'contact_button')
+    contactButton.addEventListener('click', displayModal)
+    contactButton.textContent = 'Contactez-moi'
 
-        const divPresentationText = document.createElement('div')
-        divPresentationText.setAttribute("class", "presentation-text")
-            const h1 = document.createElement( 'h1' )
-            h1.textContent = name
-            const h2 = document.createElement('h2')
-            h2.textContent = `${city}, ${country}`
-            const pTag = document.createElement('p')
-            pTag.textContent = tagline
+    divContactButton.appendChild(contactButton)
 
-            divPresentationText.appendChild(h1)
-            divPresentationText.appendChild(h2)
-            divPresentationText.appendChild(pTag)
+    const divPortrait = document.createElement('div')
+    divPortrait.setAttribute('class', 'div-portrait')
 
-        const divContactButton = document.createElement('div')
-        divContactButton.setAttribute("class", "div_contact-button")
-            const contactButton = document.createElement("button")
-            contactButton.setAttribute("class", "contact_button")
-            contactButton.addEventListener("click", displayModal)
-            contactButton.textContent = "Contactez-moi"
+    const img = document.createElement('img')
+    img.setAttribute('src', picture)
+    const alt = `Photo de ${name}`
+    img.setAttribute('alt', alt)
 
-            divContactButton.appendChild(contactButton)
+    divPortrait.appendChild(img)
 
-        const divPortrait = document.createElement('div')
-        divPortrait.setAttribute("class", "div-portrait")
-
-            const img = document.createElement( 'img' )
-            img.setAttribute("src", picture)
-            const alt = `Photo de ${name}`
-            img.setAttribute("alt", alt)
-
-            divPortrait.appendChild(img)
-
-        return ({
-            divPresentationText,
-            divContactButton,
-            divPortrait
-        })
-    }
-    return { name, picture, city, country, tagline, getPhotographerCardDOM }
+    return ({
+      divPresentationText,
+      divContactButton,
+      divPortrait
+    })
+  }
+  return { name, picture, city, country, tagline, getPhotographerCardDOM }
 }

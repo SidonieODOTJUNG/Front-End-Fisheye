@@ -1,54 +1,51 @@
+/* eslint-disable no-unused-vars */
 const lightbox = document.querySelector('.lightbox')
 const mediaImg = document.getElementById('media_img')
 const mediaVideo = document.getElementById('media_video')
 
 let currentMedia = null
-let photographerName = ""
+let photographerName = ''
 
+function displayCurrentMedia () {
+  if (!currentMedia) {
+    return
+  }
 
+  if (currentMedia.image) {
+    const picture = `assets/photographersbook/${photographerName}/${currentMedia.image}`
+    const alt = `Photo nommée ${currentMedia.title}`
 
-function displayCurrentMedia() {
-    if(!currentMedia) {
-        return; 
-    }
+    mediaVideo.style.display = 'none'
+    mediaImg.style.display = 'block'
+    mediaImg.src = picture
+    mediaImg.alt = alt
+  }
 
-    if(currentMedia.image) {
-        const picture = `assets/photographersbook/${photographerName}/${currentMedia.image}`
-        const alt = `Photo nommée ${currentMedia.title}`
-        
-        mediaVideo.style.display = "none"
-        mediaImg.style.display = "block"
-        mediaImg.src = picture
-        mediaImg.alt = alt
-    }
-
-    if(currentMedia.video) {
-        const video = `assets/photographersbook/${photographerName}/${currentMedia.video}`
-        const alt = `Vidéo nommée ${currentMedia.video.substring(0, video.length-4).replaceAll("_", " ")}`
-        mediaVideo.style.display = "block"
-        mediaImg.style.display = "none"
-        mediaVideo.src = video
-        mediaVideo.alt = alt
-        mediaVideo.setAttribute("controls", true)
-    }
+  if (currentMedia.video) {
+    const video = `assets/photographersbook/${photographerName}/${currentMedia.video}`
+    const alt = `Vidéo nommée ${currentMedia.video.substring(0, video.length - 4).replaceAll('_', ' ')}`
+    mediaVideo.style.display = 'block'
+    mediaImg.style.display = 'none'
+    mediaVideo.src = video
+    mediaVideo.alt = alt
+    mediaVideo.setAttribute('controls', true)
+  }
 }
 
-function displayLightbox(media, photographer){
-    lightbox.classList.add("show")
-    currentMedia = media
-    photographerName = photographer
-    displayCurrentMedia()
+function displayLightbox (media, photographer) {
+  lightbox.classList.add('show')
+  currentMedia = media
+  photographerName = photographer
+  displayCurrentMedia()
 }
 
-function closeLightbox() {
-    lightbox.classList.remove("show")
+function closeLightbox () {
+  lightbox.classList.remove('show')
 }
 
-
-
+// récupèrer le tri des média
 
 // let mediasArray = []
-
 
 // // var slide = new Array(currentMedia, currentMedia[1]);
 // var numero = 0;
