@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -87,22 +86,20 @@
             </div>
         </div>
 
+        <!-- essayer de comprendre à quoi sert ce lien, quand je hover dessus il fait disparaitre la couleur du bouton envoe -->
         <a href="" aria-multiline=""></a>
 
 
         <!-- lightbox -->
-
         <div class="lightbox" role="Carroussel">
             <button class="lightbox_close" onclick="closeLightbox()"></button>
-            <button class="lightbox_next" onclick="ChangeSlide(1)"></button>
-            <button class="lightbox_prev" onclick="ChangeSlide(-1)"></button>
+            <button class="lightbox_next" onclick="slideNext()"></button>
+            <button class="lightbox_prev" onclick="slidePrevious()"></button>
             <div class="lightbox_container">
                 <img id="media_img" src="" alt="">
                 <video id="media_video" src="" alt=""></video>
             </div>
         </div>
-
-       
 
         
         <script src="scripts/utils/data.js"></script>

@@ -1,10 +1,14 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const lightbox = document.querySelector('.lightbox')
 const mediaImg = document.getElementById('media_img')
 const mediaVideo = document.getElementById('media_video')
+const arrowNext = document.querySelector('.lightbox_next')
+const arrowPrevious = document.querySelector('.lightbox_prev')
 
 let currentMedia = null
 let photographerName = ''
+let index = 0
 
 function displayCurrentMedia () {
   if (!currentMedia) {
@@ -37,26 +41,35 @@ function displayLightbox (media, photographer) {
   currentMedia = media
   photographerName = photographer
   displayCurrentMedia()
+
+  arrowNext.focus()
+  index = medias.findIndex(function (el) {
+    return el.id === currentMedia.id
+  })
 }
 
 function closeLightbox () {
   lightbox.classList.remove('show')
 }
 
-// récupèrer le tri des média
+function slideNext () {
+  // si index actuel = taille tableau -1 on ramene index à 0 sinon on incremente
+  if (index === medias.length - 1) {
+    index = 0
+  } else {
+    index++
+  }
+  currentMedia = medias[index]
+  displayCurrentMedia()
+}
 
-// let mediasArray = []
-
-// // var slide = new Array(currentMedia, currentMedia[1]);
-// var numero = 0;
-
-// function ChangeSlide(sens, medias) {
-//     mediasArray = medias
-//     console.log(medias)
-//     numero = numero + sens;
-//     if (numero < 0)
-//         numero = slide.length - 1;
-//     if (numero > slide.length - 1)
-//         numero = 0;
-//     document.getElementById("media_img").src = slide[numero];
-// }
+function slidePrevious () {
+  // quand index = 0, on lui donne la valeur de la taille du tableau -1, sinon on décrémente
+  if (index === 0) {
+    index = medias.length - 1
+  } else {
+    index--
+  }
+  currentMedia = medias[index]
+  displayCurrentMedia()
+}
