@@ -36,18 +36,6 @@ function displayCurrentMedia () {
   }
 }
 
-function displayLightbox (media, photographer) {
-  lightbox.classList.add('show')
-  currentMedia = media
-  photographerName = photographer
-  displayCurrentMedia()
-
-  arrowNext.focus()
-  index = medias.findIndex(function (el) {
-    return el.id === currentMedia.id
-  })
-}
-
 function closeLightbox () {
   lightbox.classList.remove('show')
 }
@@ -72,4 +60,24 @@ function slidePrevious () {
   }
   currentMedia = medias[index]
   displayCurrentMedia()
+}
+
+// accessibilité clavier touches fléchées + echap dans la lightbox
+function listenKey (e) {
+  if (e.code === 'Escape') { closeLightbox() }
+  if (e.code === 'ArrowRight') { slideNext() }
+  if (e.code === 'ArrowLeft') { slidePrevious() }
+}
+
+function displayLightbox (media, photographer) {
+  lightbox.classList.add('show')
+  currentMedia = media
+  photographerName = photographer
+  displayCurrentMedia()
+
+  arrowNext.focus()
+  index = medias.findIndex(function (el) {
+    return el.id === currentMedia.id
+  })
+  document.addEventListener('keydown', listenKey)
 }
