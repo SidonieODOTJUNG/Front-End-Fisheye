@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<!-- Faire le check w3c pour les attributs aria notamment -->
-
     <head>
         <meta charset="utf-8">
         
@@ -16,24 +13,22 @@
     
     <body>
         <header>
-            <!--doit-on mettre un lien  vers la page d'accueil ici?  -->
             <img src="assets/images/logo.png" alt="Logo Fisheye de la page photographe" class="logo" />
         </header>
 
         <main id="main">
-            <div class="photograph-header" role="Présentation du photographe"></div>
-            <div class="sort-list" role="Liste de tri">
+            <div class="photograph-header" role="presentation"></div>
+            <div class="sort-list" role="listbox">
             <label for="preferenceList">Trier par</label>
-                <!-- TODO : faire la liste directement dans le HTML et ajouter une fonction pour trier dans data.js -->
                 <select id="preferenceList">
                     <option value="popularite">Popularité</option>
                     <option value="date">Date</option>
                     <option value="titre">Titre</option>
                   </select>
             </div>
-            <section class="photographer_media_section" role="Présentation des médias de l'artiste"></section>
+            <section class="photographer_media_section"></section>
 
-            <div class="div-price" role="Coût du photographe par jour">
+            <div class="div-price" role="contentinfo">
                 <p><span id="media-likes"></span> <i class="fa fa-heart"></i></p>
                 <p><span id="photographer-price"></span> / jour</p>
             </div>
@@ -43,42 +38,25 @@
 
         
         <!-- modale de contact -->
-
-        <!-- 
-            TODO : modale de contact en js pour accessibilité
-                penser à masquer le reste de la page html aux tech d'assistance : aria-hidden="true"
-                pouvoir fermer la modal avec la touche echap
-                mettre le focus sur la modale lorsque la fenêtre est ouverte
-
-                regarder mon cours page 27, rendre les modales accessibles : exemple code JS en fin de page 
-
-
-                + penser à gerer le focus sur le bouton d'ouverture et de fermeture de la modale
-                regarder cours pas 29, fermeture de la modale : exemple code js
-
-        -->
-
-        <div id="contact_modal" role="Fenetre de contact" aria-hidden="true" aria-describedby="modalContact">
+        <div id="contact_modal" role="dialog" aria-hidden="true">
             <div class="modal">
                 <header>
                     <h1>Contactez-moi</h1>
                     <img src="assets/icons/close.svg" alt="Fermeture du formulaire de contact" onclick="closeModal()" />
                 </header>
                 <form>
-                    <div role="group" aria-labelledby="coordonnees">
+                    <div role="form">
                         <label for="firstName">Prénom *</label>
-                        <!-- voir si j'ajoute les aria-invalid ici ou dans le JS-->
                         <input type="text" name="firstName" id="firstName" aria-required="true" required/>
 
                         <label for="lastName">Nom *</label>
                         <input type="text" name="lastName" id="lastName" aria-required="true" required/>
 
                         <label for="mail">Email *</label>
-                        <input type="mail" name="mail" id="mail" aria-required="true" required/>
+                        <input type="email" name="mail" id="mail" aria-required="true" required/>
 
                         <label for="message">Votre message</label>
-                        <!-- vérifier la taille de la textarea-->
-                        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                        <textarea name="message" id="message" rows="10"></textarea>
                     </div>
 
                     <button class="contact_button">Envoyer</button>
@@ -86,18 +64,14 @@
             </div>
         </div>
 
-        <!-- essayer de comprendre à quoi sert ce lien, quand je hover dessus il fait disparaitre la couleur du bouton envoe -->
-        <a href="" aria-multiline=""></a>
-
-
         <!-- lightbox -->
-        <div class="lightbox" role="Carroussel">
+        <div class="lightbox">
             <button class="lightbox_close" onclick="closeLightbox()"></button>
             <button class="lightbox_next" onclick="slideNext()"></button>
             <button class="lightbox_prev" onclick="slidePrevious()"></button>
             <div class="lightbox_container">
-                <img id="media_img" src="" alt="">
-                <video id="media_video" src="" alt=""></video>
+                <img id="media_img" src="#" alt="">
+                <video id="media_video"></video>
             </div>
         </div>
 

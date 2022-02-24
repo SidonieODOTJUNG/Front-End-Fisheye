@@ -1,3 +1,9 @@
+/************************/
+/************************/
+/** Composant Lightbox **/
+/************************/
+/************************/
+
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const lightbox = document.querySelector('.lightbox')

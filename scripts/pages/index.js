@@ -1,3 +1,9 @@
+/******************/
+/******************/
+/** Page Accueil **/
+/******************/
+/******************/
+
 /* eslint-disable no-undef */
 async function displayData (photographers) {
   const photographersSection = document.querySelector('.photographer_section')

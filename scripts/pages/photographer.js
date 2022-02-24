@@ -1,3 +1,9 @@
+/**********************/
+/**********************/
+/** Page Photographe **/
+/**********************/
+/**********************/
+
 /* eslint-disable no-undef */
 const getParam = new URLSearchParams(location.search)
 const idPhotographer = getParam.get('id')

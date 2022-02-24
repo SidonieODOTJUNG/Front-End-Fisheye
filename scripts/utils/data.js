@@ -1,3 +1,9 @@
+/**************************/
+/**************************/
+/** Récupération Données **/
+/**************************/
+/**************************/
+
 /* eslint-disable no-unused-vars */
 const getDatas = async function () {
   try {

@@ -1,3 +1,9 @@
+/*******************/
+/*******************/
+/** Gestion Likes **/
+/*******************/
+/*******************/
+
 /* eslint-disable no-unused-vars */
 const listenForLikes = () => {
   const likes = document.querySelectorAll('.likes')

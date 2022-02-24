@@ -1,3 +1,9 @@
+/***************************/
+/***************************/
+/** DOM Présentions Média **/
+/***************************/
+/***************************/
+
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 function mediasFactory (data, photographerName) {
